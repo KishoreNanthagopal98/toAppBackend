@@ -1,4 +1,4 @@
-# todo Application Backend service
+# Todo Application Backend service
 
 this Repo is used for All CRUD and backend activity of todo application.
 
