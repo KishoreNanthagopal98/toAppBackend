@@ -17,6 +17,4 @@ async function getTodoData (req, res) {
     res.status(200).send(response);
 }
 
-
 module.exports = { setTodoNotes, getTodoData };
-

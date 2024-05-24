@@ -7,28 +7,29 @@ async function todoSet (data) {
     try {
         const firbaseDB = getFirestore(dbCon);
         const setData = doc(firbaseDB, "todo", getTimeEpoch());
+        data.uniqid = getTimeEpoch();
         const setDataRes = await setDoc(setData, data);
-        return { success: true, message: "Data inserted successfully"};
+        return { success: true, message: "Data inserted successfully" };
     } catch (err) {
         console.log(err);
         throw err;
     }
 }
 
-async function getTodoData (data) {
+async function getTodoData () {
     const finalData = [];
     const firbaseDB = getFirestore(dbCon);
-    const cityRef = collection(firbaseDB, 'todo');
+    const cityRef = collection(firbaseDB, "todo");
     const que = query(cityRef);
     const getData = await getDocs(que);
     getData.forEach((data) => {
         finalData.push(data.data());
-    })
+    });
     return finalData;
 }
 
 const getTimeEpoch = () => {
-    return new Date().getTime().toString();                             
-}
+    return new Date().getTime().toString();
+};
 
-module.exports = { todoSet, getTodoData }
+module.exports = { todoSet, getTodoData };

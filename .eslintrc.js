@@ -4,11 +4,11 @@ module.exports = {
     commonjs: true,
     es2021: true
   },
-  extends: 'standard',
+  extends: "standard",
   overrides: [
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: "latest"
   },
   rules: {
 		indent: "off",
@@ -30,4 +30,4 @@ module.exports = {
 			"unix"
 		]
 	}
-}
+};
