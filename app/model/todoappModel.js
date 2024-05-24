@@ -1,5 +1,13 @@
 const { initilizeFirbase } = require("../../lib/firebase");
-const { getFirestore, doc, setDoc, collection, query, getDocs } = require("firebase/firestore");
+const {
+    getFirestore,
+    doc,
+    setDoc,
+    collection,
+    query,
+    getDocs,
+    where
+} = require("firebase/firestore");
 
 const dbCon = initilizeFirbase();
 
@@ -28,8 +36,20 @@ async function getTodoData () {
     return finalData;
 }
 
+async function getTodoDataBySearch (data) {
+    const finalData = [];
+    const firbaseDB = getFirestore(dbCon);
+    const cityRef = collection(firbaseDB, "todo");
+    const que = query(cityRef);
+    const getData = await getDocs(que, where("uniqid") == data.uniqid);
+    getData.forEach((data) => {
+        finalData.push(data.data());
+    });
+    return finalData;
+}
+
 const getTimeEpoch = () => {
     return new Date().getTime().toString();
 };
 
-module.exports = { todoSet, getTodoData };
+module.exports = { todoSet, getTodoData, getTodoDataBySearch };
